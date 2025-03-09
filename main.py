@@ -22,6 +22,7 @@ def main():
                 return
             
         screen.fill((0,0,0)) # Fill the screen with a black background
+        player.update(dt) # Updates players location on the screen
         player.draw(screen) # Drawing player on screen, has to be before display.flip()
         pygame.display.flip() # Update the full display Surface to the screen
 
