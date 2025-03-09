@@ -21,6 +21,7 @@ def main():
                 return
             
         screen.fill((0,0,0)) # Fill the screen with a black background
+        pygame.display.flip() # Update the full display Surface to the screen
 
 
 
