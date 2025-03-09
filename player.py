@@ -22,11 +22,18 @@ class Player(CircleShape):
     def rotate(self,dt):
         self.rotation += PLAYER_TURN_SPEED * dt # Adds rotation to users current rotation
 
+    def move(self,dt):
+        forward = pygame.Vector2(0,1).rotate(self.rotation)
+        self.position += forward * PLAYER_SPEED *dt
+
     def update(self,dt):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]: # What happens when lowercase "a" is pressed (left)
             self.rotate(-dt)
-
         if keys[pygame.K_d]: # What happens when lowercase "d" is pressed (right)
             self.rotate(dt)
+        if keys[pygame.K_w]: # What happens when lowercase "w" is pressed (move up)
+            self.move(dt)
+        if keys[pygame.K_s]: # What happens when lowercase "s" is pressed (move down)
+            self.move(-dt)

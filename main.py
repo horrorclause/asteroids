@@ -13,21 +13,25 @@ def main():
     pygame.init() # Initialize pygame
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Assign the dimensions set in constants.py
     clock = pygame.time.Clock()
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # Player object
     dt = 0
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            
-        screen.fill((0,0,0)) # Fill the screen with a black background
+
         player.update(dt) # Updates players location on the screen
+        screen.fill((0,0,0)) # Fill the screen with a black background        
         player.draw(screen) # Drawing player on screen, has to be before display.flip()
         pygame.display.flip() # Update the full display Surface to the screen
 
 
         dt = clock.tick(60)/1000 # Setting to 60 FPS
+
+
+        #-- Shows rotation and position for debugging --
+        print(f"Rotation: {player.rotation} Position: {player.position}", end="\r")
 
         
 
