@@ -13,7 +13,13 @@ def main():
     pygame.init() # Initialize pygame
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Assign the dimensions set in constants.py
     clock = pygame.time.Clock()
+    
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # Player object
+
     dt = 0
 
     while True:
@@ -21,9 +27,13 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        player.update(dt) # Updates players location on the screen
-        screen.fill((0,0,0)) # Fill the screen with a black background        
-        player.draw(screen) # Drawing player on screen, has to be before display.flip()
+        updatable.update(dt) # Updates players location on the screen
+        
+        screen.fill((0,0,0)) # Fill the screen with a black background
+        
+        for object in drawable: # Drawing player on screen, has to be before display.flip()
+            object.draw(screen)
+
         pygame.display.flip() # Update the full display Surface to the screen
 
 
@@ -31,7 +41,7 @@ def main():
 
 
         #-- Shows rotation and position for debugging --
-        print(f"Rotation: {player.rotation} Position: {player.position}", end="\r")
+        # print(f"Rotation: {player.rotation} Position: {player.position}", end="\r")
 
         
 
