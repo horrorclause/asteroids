@@ -1,6 +1,7 @@
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
+import sys
 from player import Player
 from constants import *
 from asteroid import Asteroid
@@ -35,6 +36,12 @@ def main():
                 return
 
         updatable.update(dt) # Updates players location on the screen
+
+        for object in asteroids:
+            if object.colliding_with(player):
+                print("Game Over!")
+                sys.exit()
+                
         
         screen.fill((0,0,0)) # Fill the screen with a black background
         
