@@ -1,6 +1,6 @@
 from circleshape import CircleShape
 from constants import *
-import shot
+from shot import Shot
 import pygame
 
 # Inherits from the CircleShape class in circleshape.py
@@ -39,13 +39,8 @@ class Player(CircleShape):
         if keys[pygame.K_s]: # What happens when lowercase "s" is pressed (move down)
             self.move(-dt)
         if keys[pygame.K_SPACE]:
-            new_shot = self.shoot()
+            self.shoot()
 
     def shoot(self):
-        new_shot = shot.Shot(self.position.x, self.position.y)
-
-        velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
-        new_shot.velocity = velocity
-        shot.Shot.containers[0].add(new_shot)
-
-        return new_shot
+        shot = Shot(self.position.x, self.position.y)
+        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED

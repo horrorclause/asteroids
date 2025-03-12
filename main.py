@@ -44,9 +44,6 @@ def main():
                 print("Game Over!")
                 sys.exit()
         
-        if pygame.key.get_pressed()[pygame.K_SPACE]:
-            player.shoot()
-        
         screen.fill((0,0,0)) # Fill the screen with a black background
         
         for object in drawable: # Drawing player on screen, has to be before display.flip()
