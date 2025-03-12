@@ -9,7 +9,7 @@ class Player(CircleShape):
         self.rotation = 0
 
     def draw(self, screen):
-        pygame.draw.polygon(screen,color=(255,255,255),points=self.triangle(), width=2)
+        pygame.draw.polygon(screen,color="red",points=self.triangle(), width=2)
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
