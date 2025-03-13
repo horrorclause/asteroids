@@ -44,6 +44,12 @@ def main():
                 print("Game Over!")
                 sys.exit()
         
+        for asteroid in asteroids:
+            for bullet in shots:
+                if asteroid.colliding_with(bullet):
+                    asteroid.kill()
+                    bullet.kill()
+
         screen.fill((0,0,0)) # Fill the screen with a black background
         
         for object in drawable: # Drawing player on screen, has to be before display.flip()
